@@ -1,0 +1,119 @@
+﻿<Window x:Class="RealEstateCatalog.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RealEstateCatalog.Views"
+        mc:Ignorable="d"
+        Title="Каталог недвижимости" Height="650" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DefaultWindow}">
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="30"
+                              ShadowDepth="1"
+                              Opacity="0.4"
+                ></DropShadowEffect>
+    </Window.Effect>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" ></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.ColumnSpan="2"
+                Style="{StaticResource SecondColor}">
+        <Menu >
+            <MenuItem 
+                Header="Файл">
+                <MenuItem x:Name="ExitBtn" Header="Выход" Click="ExitBtn_Click">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="ApartmentBtn" Header="Квартиры">
+                <MenuItem x:Name="OpenApartBtn" Header="Открыть" Click="OpenApartBtn_Click"></MenuItem>
+                <MenuItem x:Name="AddApartBtn" Header="Добавить" Click="AddApartBtn_Click"></MenuItem>
+                <MenuItem x:Name="RedactApartBtn" Header="Редактировать" Click="RedactApartBtn_Click"></MenuItem>
+                    <MenuItem x:Name="DeleteApartBtn" Header="Удалить" Click=" DeleteApartBtn_Click" ></MenuItem>
+                </MenuItem>
+
+                <MenuItem x:Name="ClientsBtn" Header="Клиенты">
+                    <MenuItem Header="Физические лица"></MenuItem>
+                    <MenuItem Header="Юридические лица"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="ContractsBtn" Header="Договоры" Click="ContractsBtn_Click">
+            </MenuItem>
+
+                <MenuItem x:Name="ServicesBtn" Header="Услуги">
+                    <MenuItem Header="Продажа"></MenuItem>
+                    <MenuItem Header="Аренда"></MenuItem>
+                    <MenuItem Header="Оценка"></MenuItem>
+                    <MenuItem Header="Маркетинг"></MenuItem>
+                    <MenuItem Header="Инвестиции"></MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="Справки">
+                    <MenuItem x:Name="AboutProgrammBtn" Header="О программе..." Click="AboutProgrammBtn_Click">
+                </MenuItem>
+                <MenuItem Header="Руководство пользователя"></MenuItem>
+            </MenuItem>
+        </Menu>
+        </Border>
+    
+        <Border Grid.Column="0" Grid.Row="2"
+                Style="{StaticResource SecondColor}">
+            <StackPanel VerticalAlignment="Center">
+
+                <ListBox x:Name="ApartmentBox"
+                Style="{StaticResource DefaultListBox}">
+                    <ListBoxItem 
+                        x:Name="ListBoxApartment"
+                    Style="{StaticResource DefaultListItem}"
+                    Selected="ListBoxApartment_Selected">
+                        <TextBlock Text="Квартиры"></TextBlock>
+                    </ListBoxItem>
+
+                    <ListBoxItem 
+                        x:Name="ListBoxClient"
+                    Style="{StaticResource DefaultListItem}"
+                    Selected="ListBoxClient_Selected">
+                        <TextBlock Text="Клиенты"></TextBlock>
+                    </ListBoxItem>
+
+                    <ListBoxItem
+                        Style="{StaticResource DefaultListItem}"
+                        Selected="ListBoxСontracts_Selected">
+                        <TextBlock Text="Договоры"></TextBlock>
+                    </ListBoxItem>
+
+                    <ListBoxItem 
+                        x:Name="ListBoxServices"
+                    Style="{StaticResource DefaultListItem}"
+                    Selected="ListBoxServices_Selected">
+                        <TextBlock Text="Услуги"></TextBlock>
+                    </ListBoxItem>
+                    
+                    <ListBoxItem 
+                        Style="{StaticResource DefaultListItem}"
+                        Selected="ListBoxAbout_Selected">
+                        <TextBlock Text="О программе"></TextBlock>
+                    </ListBoxItem>
+                    <ListBoxItem 
+                        Style="{StaticResource DefaultListItem}"
+                         Selected="ListBoxExit_Selected">
+                        <TextBlock Text="Выход"></TextBlock>
+                    </ListBoxItem>
+                </ListBox>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource PrymaryColor}"
+            Grid.Row="1" Grid.Column="1">
+        <Frame 
+            x:Name= "myFrame" NavigationUIVisibility="Hidden" 
+               />
+        </Border>
+    </Grid>
+</Window>

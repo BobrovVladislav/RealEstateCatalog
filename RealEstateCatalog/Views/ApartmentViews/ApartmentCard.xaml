@@ -1,0 +1,191 @@
+﻿<Window x:Class="RealEstateCatalog.Views.ApartmentViews.ApartmentCard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RealEstateCatalog.Views.ApartmentViews"
+        mc:Ignorable="d"  Height="750" Width="1500"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DefaultWindow}"
+        Title="Карточка недвижимости"
+        >
+
+    <Border Style="{StaticResource PrymaryColor}">
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="0.6*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                    Margin="50 0 0 0"
+                    Orientation="Horizontal">
+                <Label Content="ID"
+                   Margin="0 0 50 0"
+                    FontSize="30"
+                    Foreground="#000039"></Label>
+                <TextBox x:Name="IDApartTxt"
+                     Style="{StaticResource DefaultInput}"></TextBox>
+                <Button x:Name="OpenApartBtn"
+                    Click="OpenApartBtn_Click"
+                    Style="{StaticResource DefaultBtn}"
+                    Content="Просмотреть"
+                        Margin="75 0 0 0"></Button>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="1"  x:Name="ApartCardView" 
+                        Orientation="Horizontal"
+                        Visibility="Visible">
+
+                <StackPanel x:Name="ImageBlock"
+                            Grid.Row="1"
+                            Margin="50 0 0 0"
+                            >
+                    <TextBlock Text="Фотокаталог"
+                                   Margin="0 0 0 0"
+                                   Style="{StaticResource Tilte}"
+                                   FontSize="30"></TextBlock>
+                    <Image x:Name="img1"
+                       Height="350"
+                       Width="450"></Image>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="img2"
+                       Height="150"
+                       Width="250"
+                       >
+                        </Image>
+                        <Image x:Name="img3"
+                       Height="150"
+                       Width="250"></Image>
+                    </StackPanel>
+                    <TextBlock  Name="imgLoc1"></TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="MainInfo"
+                        
+                        Orientation="Horizontal"
+                        Margin="0 0 0 0"
+                            
+                        >
+                    <StackPanel Margin="0 0 0 0"
+                              >
+                        <TextBlock Text="Информация о недвижимости"
+                                   Margin="0 0 0 25"
+                                   Style="{StaticResource Tilte}"
+                                   FontSize="30"></TextBlock>
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 15">
+                            <Label Content="Адрес:"
+                                   Margin="0 0 15 0"></Label>
+                            <TextBlock x:Name="adressApart"
+                             Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 15">
+                            <Label Content="№ квартиры:"
+                                   Margin="0 0 15 0"></Label>
+                            <TextBlock x:Name="apartmentNum"
+                              Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 15">
+                            <Label Content="Тип объекта:"
+                                   Margin="0 0 15 0"></Label>
+                            <TextBlock x:Name="apartmentType"
+                             Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 15">
+                            <Label Content="Площадь:"
+                                   Margin="0 0 15 0"></Label>
+                            <TextBlock x:Name="apartmentSquare"
+                             Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 15">
+                            <Label Content="Количество комнат:"
+                                   Margin="0 0 15 0"></Label>
+                            <TextBlock x:Name="apartmentNumRooms"
+                             Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 15">
+                            <Label Content="Состояние:"
+                                   Margin="0 0 15 0"></Label>
+                            <TextBlock x:Name="apartmentCondition"
+                             Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 15">
+                            <Label Content="Стоимость:"
+                                   Margin="0 0 15 0"></Label>
+                            <TextBlock x:Name="price"
+                             Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel
+                                    Margin="0 0 0 0">
+                            <Label Content="Дополнительная информация:"
+                                   Margin="0 0 0 15"></Label>
+                            <TextBlock x:Name="apartmentInfo"
+                             Margin="0 5 0 0"></TextBlock>
+                        </StackPanel>
+
+                    </StackPanel>
+                   
+                </StackPanel>
+
+                <StackPanel x:Name="ContactsBlock"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                         Margin="50 0 0 0">
+                    <StackPanel Margin="0 0 25 0"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="Контактная информация"
+                                   Margin="0 0 0 25"
+                                   Style="{StaticResource Tilte}"
+                                   FontSize="30"></TextBlock>
+                        <Label Content="ФИО собственника:"
+                           Margin="0 0 0 10"></Label>
+                        <TextBlock  x:Name="fullNameOwner"
+                              Margin="0 0 0 25"></TextBlock>
+                        
+                        <Label Content="Номер телефона:"
+                                Margin="0 0 0 10"></Label>
+                        <TextBlock  x:Name="telOwner"></TextBlock>
+
+                        <Button x:Name="OpenContractBtn"
+                    Content="Перейти к оформлению"
+                    Style="{StaticResource DefaultBtn}"
+                                MaxWidth="300"
+                                Margin="0 35 0 0"></Button>
+                    </StackPanel>
+                   
+                    
+                    
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <Button x:Name="CancelBtn"
+                    Click="CancelBtn_Click"
+                    Content="Вернуться назад"
+                    Style="{StaticResource DefaultBtn}"></Button>
+            </StackPanel>
+            
+        </Grid>
+    </Border>
+</Window>

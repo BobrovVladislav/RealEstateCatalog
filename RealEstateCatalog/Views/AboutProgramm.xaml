@@ -1,0 +1,57 @@
+﻿<Page x:Class="RealEstateCatalog.Views.AboutProgramm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RealEstateCatalog.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="AboutProgramm"
+      Style="{StaticResource DefaultPage}">
+    
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+            Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="25 0">
+            <TextBlock Style="{StaticResource Tilte}"
+                       VerticalAlignment="Center"
+                    TextAlignment="Center" Text="Каталог недвижимости"></TextBlock>
+            <Image x:Name="logoPng" Source="/Styles/img/logoMain.png">
+
+        </Image>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="0 25 0 25"
+                           MaxWidth="750"
+                           Text="Программа, предназначенная для комфортной работы с недвижимостью риелторским агенствам"></TextBlock>
+            <TextBlock 
+                           TextWrapping="Wrap"
+                HorizontalAlignment="Left"
+                           Margin="25 5 0 5"
+                           MaxWidth="550"
+                           Text="Версия: Reliase01"></TextBlock>
+            <TextBlock 
+                           TextWrapping="Wrap"
+                 HorizontalAlignment="Left"
+                           Margin="25 5 0 5"
+                           MaxWidth="550"
+                           Text="Компания: ООО 'Монолит'"></TextBlock>
+            <TextBlock 
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Left"
+                           Margin="25 5 0 5"
+                           MaxWidth="750"
+                           Text="Комментрий:  Программа создана в рамках курсовой работы по Проектированию и разработке информационных систем Бобровом В.В. группы ИСП-205"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

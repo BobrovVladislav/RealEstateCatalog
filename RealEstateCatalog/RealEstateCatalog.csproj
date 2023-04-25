@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F1E1D75A-4207-4104-B8F7-C51FA5F5BD78}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>RealEstateCatalog</RootNamespace>
+    <AssemblyName>RealEstateCatalog</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Base\Apartment.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Client.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\CorporateClient.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\IndividualClient.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\PhotoCatalog.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\RealEstateBase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RealEstateBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\RealEstateBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\RealEstateBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RealEstateBase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Role.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\User.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Сontract.cs">
+      <DependentUpon>RealEstateBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutProgramm.xaml.cs">
+      <DependentUpon>AboutProgramm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApartmentViews\ApartmentAdd.xaml.cs">
+      <DependentUpon>ApartmentAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApartmentViews\ApartmentCard.xaml.cs">
+      <DependentUpon>ApartmentCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApartmentViews\ApartmentDelete.xaml.cs">
+      <DependentUpon>ApartmentDelete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApartmentViews\ApartmentMain.xaml.cs">
+      <DependentUpon>ApartmentMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApartmentViews\ApartmentRedact.xaml.cs">
+      <DependentUpon>ApartmentRedact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Authorization.xaml.cs">
+      <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Base\AppData.cs" />
+    <Compile Include="Views\Clients.xaml.cs">
+      <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientsViews\ClientsMain.xaml.cs">
+      <DependentUpon>ClientsMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContractsViews\ContractMain.xaml.cs">
+      <DependentUpon>ContractMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServicesView\ServicesMain.xaml.cs">
+      <DependentUpon>ServicesMain.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Styles\CommonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AboutProgramm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApartmentViews\ApartmentAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApartmentViews\ApartmentCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApartmentViews\ApartmentDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApartmentViews\ApartmentMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApartmentViews\ApartmentRedact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Authorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientsViews\ClientsMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContractsViews\ContractMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ServicesView\ServicesMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Base\RealEstateBase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RealEstateBase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Base\RealEstateBase.edmx.diagram">
+      <DependentUpon>RealEstateBase.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\img\refresh2.png" />
+    <Resource Include="Styles\img\Icon2.png" />
+    <Resource Include="Styles\img\Icon1.png" />
+    <Resource Include="Styles\img\logoMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Base\RealEstateBase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RealEstateBase.edmx</DependentUpon>
+      <LastGenOutput>RealEstateBase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Base\RealEstateBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RealEstateBase.edmx</DependentUpon>
+      <LastGenOutput>RealEstateBase.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

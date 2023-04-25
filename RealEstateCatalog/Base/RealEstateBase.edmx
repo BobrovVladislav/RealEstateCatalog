@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RealEstateCatalogModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adressApart" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apartmentNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apartmentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="apartmentSquare" Type="int" />
+          <Property Name="numRooms" Type="int" Nullable="false" />
+          <Property Name="apartmentCondition" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="apartmentInfo" Type="nvarchar" MaxLength="250" />
+          <Property Name="fullNameOwner" Type="nvarchar" MaxLength="50" />
+          <Property Name="telOwner" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDPhotoCatalog" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="telClient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDindividual" Type="int" />
+          <Property Name="IDcorporate" Type="int" />
+        </EntityType>
+        <EntityType Name="CorporateClient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="nameCorporate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="adressCorporate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="INN" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IndividualClient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="adressIndivid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="passportNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateClient" Type="date" Nullable="false" />
+          <Property Name="fullNameClient" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhotoCatalog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image_1" Type="nvarchar" MaxLength="100" />
+          <Property Name="image_2" Type="nvarchar" MaxLength="100" />
+          <Property Name="image_3" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сontract">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="IDClient" Type="int" Nullable="false" />
+          <Property Name="IDApartment" Type="int" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="amount" Type="money" Nullable="false" />
+          <Property Name="dateContract" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Apartment_PhotoCatalogg">
+          <End Role="PhotoCatalog" Type="Self.PhotoCatalog" Multiplicity="0..1" />
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhotoCatalog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Apartment">
+              <PropertyRef Name="IDPhotoCatalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CorporateClient_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="CorporateClient" Type="Self.CorporateClient" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CorporateClient">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndividualClient_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="IndividualClient" Type="Self.IndividualClient" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndividualClient">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сontract_Apartment">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="1" />
+          <End Role="Сontract" Type="Self.Сontract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Сontract">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сontract_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Сontract" Type="Self.Сontract" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Сontract">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RealEstateCatalogModelContainer">
+          <EntitySet Name="Apartment" EntityType="Self.Apartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CorporateClient" EntityType="Self.CorporateClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndividualClient" EntityType="Self.IndividualClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoCatalog" EntityType="Self.PhotoCatalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сontract" EntityType="Self.Сontract" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Apartment_PhotoCatalogg" Association="Self.FK_Apartment_PhotoCatalogg">
+            <End Role="PhotoCatalog" EntitySet="PhotoCatalog" />
+            <End Role="Apartment" EntitySet="Apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CorporateClient_Client" Association="Self.FK_CorporateClient_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="CorporateClient" EntitySet="CorporateClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndividualClient_Client" Association="Self.FK_IndividualClient_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="IndividualClient" EntitySet="IndividualClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сontract_Apartment" Association="Self.FK_Сontract_Apartment">
+            <End Role="Apartment" EntitySet="Apartment" />
+            <End Role="Сontract" EntitySet="Сontract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сontract_Client" Association="Self.FK_Сontract_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Сontract" EntitySet="Сontract" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RealEstateCatalogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adressApart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apartmentNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apartmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apartmentSquare" Type="Int32" />
+          <Property Name="numRooms" Type="Int32" Nullable="false" />
+          <Property Name="apartmentCondition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="apartmentInfo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="fullNameOwner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telOwner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDPhotoCatalog" Type="Int32" />
+          <NavigationProperty Name="PhotoCatalog" Relationship="Self.FK_Apartment_PhotoCatalogg" FromRole="Apartment" ToRole="PhotoCatalog" />
+          <NavigationProperty Name="Сontract" Relationship="Self.FK_Сontract_Apartment" FromRole="Apartment" ToRole="Сontract" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="telClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDindividual" Type="Int32" />
+          <Property Name="IDcorporate" Type="Int32" />
+          <NavigationProperty Name="CorporateClient" Relationship="Self.FK_CorporateClient_Client" FromRole="Client" ToRole="CorporateClient" />
+          <NavigationProperty Name="IndividualClient" Relationship="Self.FK_IndividualClient_Client" FromRole="Client" ToRole="IndividualClient" />
+          <NavigationProperty Name="Сontract" Relationship="Self.FK_Сontract_Client" FromRole="Client" ToRole="Сontract" />
+        </EntityType>
+        <EntityType Name="CorporateClient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="nameCorporate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="adressCorporate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_CorporateClient_Client" FromRole="CorporateClient" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="IndividualClient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="adressIndivid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="passportNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateClient" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fullNameClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_IndividualClient_Client" FromRole="IndividualClient" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="PhotoCatalog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image_1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="image_2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="image_3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Apartment_PhotoCatalogg" FromRole="PhotoCatalog" ToRole="Apartment" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Сontract">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IDClient" Type="Int32" Nullable="false" />
+          <Property Name="IDApartment" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="dateContract" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Сontract_Apartment" FromRole="Сontract" ToRole="Apartment" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Сontract_Client" FromRole="Сontract" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_Apartment_PhotoCatalogg">
+          <End Role="PhotoCatalog" Type="Self.PhotoCatalog" Multiplicity="0..1" />
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhotoCatalog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Apartment">
+              <PropertyRef Name="IDPhotoCatalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сontract_Apartment">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="1" />
+          <End Role="Сontract" Type="Self.Сontract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Сontract">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CorporateClient_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="CorporateClient" Type="Self.CorporateClient" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CorporateClient">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndividualClient_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="IndividualClient" Type="Self.IndividualClient" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndividualClient">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сontract_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Сontract" Type="Self.Сontract" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Сontract">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RealEstateCatalogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apartment" EntityType="Self.Apartment" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="CorporateClient" EntityType="Self.CorporateClient" />
+          <EntitySet Name="IndividualClient" EntityType="Self.IndividualClient" />
+          <EntitySet Name="PhotoCatalog" EntityType="Self.PhotoCatalog" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Сontract" EntityType="Self.Сontract" />
+          <AssociationSet Name="FK_Apartment_PhotoCatalogg" Association="Self.FK_Apartment_PhotoCatalogg">
+            <End Role="PhotoCatalog" EntitySet="PhotoCatalog" />
+            <End Role="Apartment" EntitySet="Apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сontract_Apartment" Association="Self.FK_Сontract_Apartment">
+            <End Role="Apartment" EntitySet="Apartment" />
+            <End Role="Сontract" EntitySet="Сontract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CorporateClient_Client" Association="Self.FK_CorporateClient_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="CorporateClient" EntitySet="CorporateClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndividualClient_Client" Association="Self.FK_IndividualClient_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="IndividualClient" EntitySet="IndividualClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сontract_Client" Association="Self.FK_Сontract_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Сontract" EntitySet="Сontract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RealEstateCatalogModelContainer" CdmEntityContainer="RealEstateCatalogEntities">
+          <EntitySetMapping Name="Apartment">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.Apartment">
+              <MappingFragment StoreEntitySet="Apartment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="adressApart" ColumnName="adressApart" />
+                <ScalarProperty Name="apartmentNum" ColumnName="apartmentNum" />
+                <ScalarProperty Name="apartmentType" ColumnName="apartmentType" />
+                <ScalarProperty Name="apartmentSquare" ColumnName="apartmentSquare" />
+                <ScalarProperty Name="numRooms" ColumnName="numRooms" />
+                <ScalarProperty Name="apartmentCondition" ColumnName="apartmentCondition" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="apartmentInfo" ColumnName="apartmentInfo" />
+                <ScalarProperty Name="fullNameOwner" ColumnName="fullNameOwner" />
+                <ScalarProperty Name="telOwner" ColumnName="telOwner" />
+                <ScalarProperty Name="IDPhotoCatalog" ColumnName="IDPhotoCatalog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="telClient" ColumnName="telClient" />
+                <ScalarProperty Name="IDindividual" ColumnName="IDindividual" />
+                <ScalarProperty Name="IDcorporate" ColumnName="IDcorporate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CorporateClient">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.CorporateClient">
+              <MappingFragment StoreEntitySet="CorporateClient">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nameCorporate" ColumnName="nameCorporate" />
+                <ScalarProperty Name="adressCorporate" ColumnName="adressCorporate" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndividualClient">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.IndividualClient">
+              <MappingFragment StoreEntitySet="IndividualClient">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="adressIndivid" ColumnName="adressIndivid" />
+                <ScalarProperty Name="passportNum" ColumnName="passportNum" />
+                <ScalarProperty Name="dateClient" ColumnName="dateClient" />
+                <ScalarProperty Name="fullNameClient" ColumnName="fullNameClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoCatalog">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.PhotoCatalog">
+              <MappingFragment StoreEntitySet="PhotoCatalog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="image_1" ColumnName="image_1" />
+                <ScalarProperty Name="image_2" ColumnName="image_2" />
+                <ScalarProperty Name="image_3" ColumnName="image_3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сontract">
+            <EntityTypeMapping TypeName="RealEstateCatalogModel.Сontract">
+              <MappingFragment StoreEntitySet="Сontract">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="IDApartment" ColumnName="IDApartment" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="dateContract" ColumnName="dateContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

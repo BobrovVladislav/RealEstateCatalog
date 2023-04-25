@@ -1,0 +1,144 @@
+﻿<Window x:Class="RealEstateCatalog.Views.ApartmentViews.ApartmentAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RealEstateCatalog.Views.ApartmentViews"
+        mc:Ignorable="d"
+        Title="Добавление недвижимости" Height="700" Width="1300"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DefaultWindow}">
+    <Border Style="{StaticResource PrymaryColor}">
+    <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left">
+                <TextBlock Text="Основная информация"
+                                   Margin="0 35 0 15"
+                                   Style="{StaticResource Tilte}"
+                                   FontSize="30"></TextBlock>
+                <StackPanel 
+                        Orientation="Horizontal"
+                        Margin="25 0 0 0"
+                        >
+                
+                <StackPanel Margin="0 0 25 0"
+                              VerticalAlignment="Center">
+                    
+                    <Label Content="Адрес"
+                           Margin="0 0 0 15"></Label>
+                    <Label Content="№ квартиры"
+                           Margin="0 0 0 15"></Label>
+                    <Label Content="Тип объекта"
+                           Margin="0 0 0 15"></Label>
+                    <Label Content="Площадь"
+                           Margin="0 0 0 15"></Label>
+                    <Label  Content="Количество комнат"
+                            Margin="0 0 0 15"></Label>
+                    <Label Content="Состояние"
+                           Margin="0 0 0 15"></Label>
+                    <Label Content="Стоимость"
+                            Margin="0 0 0 15"></Label>
+                    <Label Content="Дополнительная информация:"></Label>
+                        </StackPanel>
+                    
+                <StackPanel VerticalAlignment="Center"
+                            Margin="0 0 0 0">
+                    <TextBox x:Name="AdressApartTxt"
+                             Style="{StaticResource DefaultInput}"
+                             Margin="0 0 0 20"></TextBox>
+                    
+                    <TextBox  x:Name="NumApartTxt"
+                               Style="{StaticResource DefaultInput}"
+                              Margin="0 0 0 20"></TextBox>
+                    
+                        <ComboBox  x:Name="ApartmentTypeTxt"
+                              Margin="0 0 0 20">
+                            <ComboBoxItem Content="Коммерческая"></ComboBoxItem>
+                            <ComboBoxItem Content="Жилая"></ComboBoxItem>
+                        </ComboBox>
+                    
+                        <TextBox  x:Name="ApartmentSquareTxt"
+                               Style="{StaticResource DefaultInput}"
+                              Margin="0 0 0 20"></TextBox>
+                    
+                        <ComboBox  x:Name="NumRoomsTxt"
+                               Margin="0 0 0 20"
+                               >
+                        <ComboBoxItem Content="1"></ComboBoxItem>
+                        <ComboBoxItem Content="2"></ComboBoxItem>
+                        <ComboBoxItem Content="3"></ComboBoxItem>
+                        <ComboBoxItem Content="4"></ComboBoxItem>
+                    </ComboBox>
+
+                        <ComboBox  x:Name="ApartmentConditionTxt"
+                               Margin="0 0 0 20"
+                               >
+                            <ComboBoxItem Content="C ремонтом"></ComboBoxItem>
+                            <ComboBoxItem Content="Без ремонта"></ComboBoxItem>
+                        </ComboBox>
+
+                        <TextBox  x:Name="PriceApartTxt"
+                                  Margin="0 0 0 20"
+                       Style="{StaticResource DefaultInput}"></TextBox>
+
+                        <TextBox  x:Name="ApartmentInfoTxt"
+                       Style="{StaticResource DefaultInput}"></TextBox>
+                    </StackPanel>
+            </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Right"
+                         VerticalAlignment="Center" >
+                <TextBlock Text="Контактная информация"
+                                   Margin="0 0 0 25"
+                                   Style="{StaticResource Tilte}"
+                                   FontSize="30"></TextBlock>
+                <StackPanel 
+                    Orientation="Horizontal"
+                         Margin="0 0 25 0">
+                
+                <StackPanel Margin="0 0 25 0"
+                            VerticalAlignment="Center">
+                    
+                    <Label Content="ФИО собственника"
+                           Margin="0 0 0 25"></Label>
+                    <Label Content="Номер телефона"></Label>
+                    
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBox  x:Name="FullNameOwnerTxt"
+                       Style="{StaticResource DefaultInput}"
+                              Margin="0 0 0 30"></TextBox>
+                    <TextBox  x:Name="TelOwnerTxt"
+                 Style="{StaticResource DefaultInput}"></TextBox>
+                </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            
+
+                <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+            <Button x:Name="SaveApartBtn"
+                    Click="SaveApartBtn_Click"
+                    Content="Добавить"
+                    Style="{StaticResource DefaultBtn}"
+                    Margin="0 0 50 0"></Button>
+            <Button x:Name="CancelBtn"
+                    Click="CancelBtn_Click"
+                    Content="Отмена"
+                    Style="{StaticResource DefaultBtn}"></Button>
+        </StackPanel>
+
+
+    </Grid>
+    </Border>
+</Window>
